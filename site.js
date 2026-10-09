@@ -15,6 +15,12 @@
     });
   }
 
+
+  // On secondary pages, legacy footer anchors must lead to the homepage section.
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    const hash=a.getAttribute("href");
+    if(hash.length>1 && !document.getElementById(hash.slice(1))) a.setAttribute("href","/"+hash);
+  });
   const button=document.querySelector(".menu-toggle");
   const nav=document.getElementById("main-nav");
   if(!button||!nav)return;
