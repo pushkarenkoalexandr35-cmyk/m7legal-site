@@ -264,3 +264,23 @@
 @media(max-width:870px){.m7-team-heading{grid-template-columns:1fr;gap:17px}.m7-team-grid{grid-template-columns:1fr}.m7-team-card{min-height:0}.m7-team-figure>img{height:65vw}}
 @media(max-width:530px){.m7-team-grid{gap:13px}.m7-team-card-head{padding:24px 22px 0}.m7-team-card-content{padding:12px 22px 23px}.m7-team-card h3{font-size:clamp(27px,8vw,34px);margin-bottom:16px}.m7-team-bio{font-size:14px;line-height:1.7}.m7-team-expertise{margin:23px 0}.m7-team-education{font-size:12px}.m7-team-areas li{font-size:11px;padding:7px 10px}.m7-team-figure>img{height:83vw;object-position:50% 40%}.m7-team-figure figcaption{padding:14px 17px;font-size:11px}}
 @media(prefers-reduced-motion:reduce){.m7-team-card{transition:none}}
+
+
+
+/* Prelaunch responsive QA, 2026-10-09: maintain readable layout at 320px and 768px. */
+@media (min-width:761px) and (max-width:900px) {
+  .info-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .info-card { min-width:0; }
+  .info-card h3 { overflow-wrap:anywhere; }
+}
+@media (max-width:350px) {
+  .request-section h2 { font-size:clamp(30px,10vw,36px); }
+  .request-section h2 em { overflow-wrap:anywhere; }
+  .m7-team-heading { grid-template-columns:minmax(0,1fr); }
+  .m7-team-heading > div,.m7-team-heading > p { min-width:0; }
+  .m7-team-heading h2 { font-size:clamp(27px,9vw,34px);overflow-wrap:anywhere; }
+  .china-rate-grid { grid-template-columns:minmax(0,1fr); }
+  .china-rate-grid article { min-width:0;padding:24px; }
+  .china-rate-grid strong { font-size:29px;overflow-wrap:anywhere; }
+  .inner-actions .btn { white-space:normal;max-width:100%;gap:14px;padding-inline:16px; }
+}
