@@ -132,3 +132,62 @@
 .case-money strong{display:block;font-size:clamp(37px,4.2vw,60px);letter-spacing:-.06em;line-height:1.05;font-variant-numeric:tabular-nums;white-space:nowrap}
 .case-money p{margin:auto 0;font-size:13px;line-height:1.65;color:#4c5b4f}
 @media(max-width:720px){.case-money{display:block;padding:20px}.case-money p{margin-top:14px}.case-money strong{font-size:clamp(35px,10vw,49px);white-space:normal}}
+
+/* Full legal-services price catalog */
+.pricing-hero{padding-bottom:87px}
+.pricing-hero h1{max-width:1080px}
+.price-jumplinks{display:flex;flex-wrap:wrap;gap:9px;max-width:1050px;margin:30px 0 34px}
+.price-jumplinks a{display:inline-flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid #bfc8bc;padding:12px 16px;background:#fff;font-weight:750;font-size:13px;color:#2c3a2d;transition:background .2s,border-color .2s}
+.price-jumplinks a:hover{background:#e1e8dc;border-color:#8fa88b}
+.price-jumplinks span{color:#af542f;font-size:17px}
+.price-catalog-section{scroll-margin-top:88px}
+.price-section-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.68fr);align-items:end;gap:60px;margin-bottom:35px}
+.price-section-head h2{margin-bottom:0;max-width:760px}
+.price-section-head h2 em{font-style:normal;color:var(--orange-dark)}
+.price-section-head>p{font-size:16px;line-height:1.65;color:#5d675c;margin:0 0 4px}
+.pricing-table-wrap{border-top:2px solid #26352b;overflow-x:auto;background:#fffefa}
+.price-list{width:100%;border-collapse:collapse;table-layout:fixed}
+.price-list thead{background:#e8eee4}
+.price-list thead th{padding:18px 23px;font-size:11px;text-align:left;letter-spacing:.11em;text-transform:uppercase;color:#6c7869;font-weight:800}
+.price-list thead th:last-child{text-align:right;width:25%}
+.price-list tbody tr{border-bottom:1px solid #d8ded5}
+.price-list tbody tr:hover{background:#f0f4ee}
+.price-list tbody th,.price-list tbody td{padding:21px 23px;vertical-align:middle}
+.price-list tbody th{text-align:left;font-size:16px;font-weight:700;line-height:1.4}
+.price-list tbody th>span{display:block;letter-spacing:-.012em}
+.price-list tbody th>small{display:block;font-weight:400;font-size:13px;color:#697667;line-height:1.55;margin-top:7px}
+.price-list tbody td{text-align:right;white-space:nowrap;font-size:20px;letter-spacing:-.03em}
+.price-list tbody td strong{font-weight:800;font-variant-numeric:tabular-nums}
+.monthly-section{scroll-margin-top:88px}
+.monthly-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.monthly-card{background:#f0f2eb;padding:32px;display:flex;flex-direction:column;min-height:475px}
+.monthly-card-featured{background:#26372b;color:#fff}
+.monthly-card-top{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;font-weight:800}
+.monthly-card-top small{font-size:10px;color:#fff;background:#ad522e;padding:6px 8px}
+.monthly-amount{font-size:clamp(33px,3vw,44px);font-weight:850;line-height:1.05;letter-spacing:-.052em;margin:38px 0 15px;white-space:nowrap}
+.monthly-amount small{display:block;font-size:14px;letter-spacing:0;font-weight:500;margin-top:10px;opacity:.65}
+.monthly-card>p{font-size:14px;line-height:1.6;color:#626e60;min-height:70px;margin:0 0 22px}
+.monthly-card-featured>p{color:#cad5c9}
+.monthly-card ul{margin:0 0 28px;padding:0;list-style:none}
+.monthly-card li{font-size:13px;padding:12px 0 12px 20px;border-bottom:1px solid #d1d9d0;position:relative;line-height:1.4}
+.monthly-card-featured li{border-bottom-color:#4d6651}
+.monthly-card li::before{content:'↗';position:absolute;left:0;color:#b7653f}
+.monthly-card .btn{margin-top:auto;align-self:stretch;justify-content:space-between;display:flex;text-align:left}
+.monthly-card .btn-outline{border:1px solid #49594a;background:transparent;color:#203227}
+.monthly-card .btn-outline:hover{background:#e2ebe0}
+.price-china-section{scroll-margin-top:88px}
+.china-rate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.china-rate-grid article{background:#fffefa;min-height:245px;padding:30px;display:flex;flex-direction:column}
+.china-rate-grid span{font-size:14px;font-weight:750;color:#49564b}
+.china-rate-grid strong{font-size:clamp(27px,2.7vw,39px);font-variant-numeric:tabular-nums;letter-spacing:-.045em;margin:25px 0 10px}
+.china-rate-grid p{font-size:13px;line-height:1.6;color:#647064}
+.china-rate-grid a{margin-top:auto;font-size:12px;font-weight:850;border-top:1px solid #d2dad0;padding-top:15px}
+.price-process{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.price-process>div{background:#f0f2ec;padding:27px}
+.price-process span{font-size:12px;font-weight:900;color:var(--orange-dark)}
+.price-process h3{margin:23px 0 11px;font-size:24px;letter-spacing:-.035em}
+.price-process p{margin:0;color:#5e6b5e;font-size:14px;line-height:1.6}
+.price-smallprint{margin:30px 0 0;color:#6d786d;font-size:12px;line-height:1.7;max-width:900px}
+@media(max-width:1040px){.monthly-card{padding:23px}.monthly-amount{font-size:33px}.price-section-head{gap:20px}}
+@media(max-width:800px){.monthly-grid,.china-rate-grid,.price-process{grid-template-columns:1fr}.monthly-card{min-height:0}.monthly-card>p{min-height:0}.price-section-head{grid-template-columns:1fr;gap:10px}.price-section-head h2{margin-bottom:4px}.price-section-head>p{margin:0 0 12px}}
+@media(max-width:600px){.pricing-hero{padding-bottom:58px}.price-jumplinks{margin:24px 0 28px}.price-jumplinks a{font-size:12px;padding:10px 11px}.price-list thead th{padding:15px 10px}.price-list tbody th,.price-list tbody td{padding:18px 10px}.price-list tbody th{font-size:14px}.price-list tbody th>small{font-size:12px}.price-list tbody td{font-size:16px}.price-list thead th:last-child{width:35%}.monthly-amount{font-size:39px}.china-rate-grid strong{font-size:35px}}
