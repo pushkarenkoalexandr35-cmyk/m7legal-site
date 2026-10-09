@@ -77,3 +77,46 @@
 .profile-facts span{color:#737b72;font-size:13px}
 .profile-facts b{font-size:16px;max-width:55%;text-align:right}
 @media(max-width:760px){.team-person,.profile-layout{display:block}.team-person{padding:22px}.team-person>a{display:block;max-width:360px;margin-bottom:30px}.team-person-info h3{font-size:41px}.profile-photo{max-width:450px;margin-bottom:40px}.profile-facts>div{align-items:start}}
+
+
+/* Adapted case-study patterns: clearly labelled illustrative, not client matters */
+.model-disclaimer{padding:22px 25px;margin:25px 0 30px;background:#e7ebe2;border-left:4px solid #b65b35;color:#465046;font-size:14px;line-height:1.7;max-width:960px}
+.model-disclaimer strong{display:block;font-size:15px;color:#242a24;margin-bottom:4px}
+.story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.story-card{min-height:360px;padding:28px 29px 24px;background:#f1f3ee;display:flex;flex-direction:column;transition:background .15s}
+.story-card:hover{background:#e6ede2}
+.story-card-top,.story-details{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.story-counter{font-size:14px;font-weight:800;color:#707b6d}
+.case-pill{background:#f9dfcf;padding:6px 10px;font-size:11px;font-weight:800;color:#793b20}
+.story-details{justify-content:flex-start;gap:12px;margin-top:32px}
+.story-sector{color:#a74f2e;text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:800}
+.story-kind{color:#7e8879;font-size:12px}
+.story-card h3{font-size:clamp(24px,2.1vw,31px);letter-spacing:-.047em;line-height:1.15;margin:15px 0}
+.story-card p{color:#626e61;font-size:14px;line-height:1.65;margin:0 0 20px}
+.story-card a{margin-top:auto;padding-top:16px;border-top:1px solid #c4cdc0;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:13px;font-weight:800}
+.story-card a span{font-size:21px;color:#a95130;font-weight:500}
+.case-endnote{border:1px solid #c8d0c3;padding:19px 23px;margin-top:34px;font-size:13px;color:#586458;line-height:1.65;background:#fbfcfa}
+.case-detail-hero h1{max-width:1060px;font-size:clamp(47px,5.5vw,85px)}
+.case-detail-hero .model-disclaimer{margin-top:30px}
+.case-content-wrap{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:10%;align-items:start}
+.case-article h2{margin-bottom:33px}
+.case-steps{list-style:none;padding:0;margin:0;counter-reset:none}
+.case-steps li{display:grid;grid-template-columns:42px 1fr;gap:20px;border-top:1px solid #d8dfd5;padding:21px 0;line-height:1.75;font-size:16px;color:#4b594c}
+.case-steps li:last-child{border-bottom:1px solid #d8dfd5}
+.case-steps b{font-size:13px;color:#b35b32;margin-top:3px}
+.case-question{border-left:4px solid var(--orange);background:#f1f3ee;padding:25px;margin-top:30px}
+.case-question span{color:#7c492c;font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:800}
+.case-question p{font-size:22px;line-height:1.4;letter-spacing:-.025em;margin:12px 0 0;font-weight:650}
+.case-side{padding:28px;background:#252b26;color:#f0f2eb;display:flex;flex-direction:column;gap:10px}
+.case-side .case-meta{color:#afb8ae;font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-top:8px}
+.case-side b{font-size:17px;line-height:1.4}
+.case-side a{display:inline-block;color:#fab68f;padding-top:22px;border-top:1px solid #616a60;margin-top:20px;font-weight:800;font-size:13px;line-height:1.5}
+.case-steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.case-steps-grid li{display:flex;flex-direction:column;gap:12px;border:0;background:#fff;padding:27px;min-height:220px;font-size:15px}
+.case-steps-grid li:last-child{border:0}
+.case-outcomes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.case-outcomes article{padding:27px;background:#eef1eb;min-height:210px}
+.case-outcomes span{color:#a65330;letter-spacing:.08em;text-transform:uppercase;font-weight:800;font-size:11px}
+.case-outcomes p{font-size:16px;line-height:1.6;margin:25px 0 0;color:#4a584c}
+@media(max-width:1000px){.story-grid,.case-steps-grid,.case-outcomes{grid-template-columns:repeat(2,minmax(0,1fr))}.case-content-wrap{gap:5%}}
+@media(max-width:720px){.story-grid,.case-steps-grid,.case-outcomes{grid-template-columns:1fr}.story-card{min-height:0}.case-content-wrap{display:flex;flex-direction:column;gap:30px}.case-side{width:100%}.case-steps-grid li{min-height:0}.model-disclaimer{padding:20px;margin:25px 0}.case-detail-hero h1{font-size:clamp(43px,10vw,62px)}}
