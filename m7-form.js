@@ -104,7 +104,7 @@
         name:String(data.get('name')||'').trim(),
         phone:contact.includes('@')?'':contact,
         email:contact.includes('@')?contact:'',
-        task:'M7Legal — '+source+'. Тариф: '+tariff+'. Компания или код ЕСКК: '+company,
+        task:(source.startsWith('M7Legal')?source:'M7Legal — '+source)+'. Тариф: '+tariff+'. Дополнительные сведения: '+company,
         website:String(data.get('website')||''),
         page:location.href,
         form_token:formToken,
