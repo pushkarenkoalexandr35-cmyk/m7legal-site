@@ -120,3 +120,15 @@
 .case-outcomes p{font-size:16px;line-height:1.6;margin:25px 0 0;color:#4a584c}
 @media(max-width:1000px){.story-grid,.case-steps-grid,.case-outcomes{grid-template-columns:repeat(2,minmax(0,1fr))}.case-content-wrap{gap:5%}}
 @media(max-width:720px){.story-grid,.case-steps-grid,.case-outcomes{grid-template-columns:1fr}.story-card{min-height:0}.case-content-wrap{display:flex;flex-direction:column;gap:30px}.case-side{width:100%}.case-steps-grid li{min-height:0}.model-disclaimer{padding:20px;margin:25px 0}.case-detail-hero h1{font-size:clamp(43px,10vw,62px)}}
+
+
+/* Monetary illustrations: never present them as real legal outcomes. */
+.story-money,.case-home-money{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin:4px 0 22px}
+.story-money span,.case-home-money span{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:#686f64;font-weight:700}
+.story-money strong{font-size:clamp(27px,2.5vw,36px);line-height:1.1;letter-spacing:-.045em;font-weight:800;color:#1c2d22;font-variant-numeric:tabular-nums}
+.case-home-money strong{font-size:clamp(25px,2.3vw,31px);line-height:1.1;letter-spacing:-.04em;font-weight:800;color:#20271f;font-variant-numeric:tabular-nums}
+.case-money{margin:28px 0 29px;display:grid;grid-template-columns:minmax(220px,.72fr) minmax(220px,1fr);gap:35px;max-width:940px;padding:24px 26px;background:#e4ebe0;border-left:4px solid #e86832}
+.case-money-label{display:block;text-transform:uppercase;letter-spacing:.09em;font-size:11px;font-weight:800;color:#4c654f;margin-bottom:10px}
+.case-money strong{display:block;font-size:clamp(37px,4.2vw,60px);letter-spacing:-.06em;line-height:1.05;font-variant-numeric:tabular-nums;white-space:nowrap}
+.case-money p{margin:auto 0;font-size:13px;line-height:1.65;color:#4c5b4f}
+@media(max-width:720px){.case-money{display:block;padding:20px}.case-money p{margin-top:14px}.case-money strong{font-size:clamp(35px,10vw,49px);white-space:normal}}
