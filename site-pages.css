@@ -1,0 +1,64 @@
+
+/* Additional responsive styles for M7Legal services and editorial subpages. */
+.inner-hero{background:#f1efe8;padding:80px 0 92px;border-bottom:1px solid var(--line)}
+.inner-hero .crumbs{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;font-weight:650;color:#727a70;margin-bottom:46px}
+.inner-hero .crumbs a{text-decoration:underline;text-underline-offset:3px}
+.inner-hero .crumbs span{color:#acb0a7}
+.inner-hero .page-label{font-size:12px;color:#aa4b29;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.inner-hero h1{font-size:clamp(52px,5.5vw,92px);letter-spacing:-.065em;line-height:1.02;max-width:1030px;margin:18px 0 28px}
+.inner-hero h1 em{color:var(--orange-dark);font-style:normal}
+.inner-hero .lead{font-size:clamp(17px,1.7vw,22px);line-height:1.6;color:#535b52;max-width:760px;margin:0 0 32px}
+.inner-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.inner-actions .plain-link{font-weight:750;font-size:14px;padding:13px 0;border-bottom:1px solid #73796e}
+.inner-section{padding:92px 0;background:#fffefa}
+.inner-section.alt{background:#f0f2ec}
+.inner-section.dark{background:var(--ink);color:#fff}
+.inner-section h2{font-size:clamp(37px,4vw,62px);line-height:1.06;letter-spacing:-.055em;max-width:810px;margin:0 0 35px}
+.inner-section .section-intro{font-size:17px;color:#656c65;max-width:850px;line-height:1.75;margin:0 0 33px}
+.inner-section.dark .section-intro{color:#c5ccc2}
+.info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.info-card{padding:31px;background:#f3f4ee;min-height:230px;display:flex;flex-direction:column}
+.alt .info-card{background:#fffefa}
+.info-card .card-n{font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--orange-dark)}
+.info-card h3{margin:26px 0 13px;font-size:25px;line-height:1.17;letter-spacing:-.03em}
+.info-card p{color:#656d64;font-size:14px;line-height:1.65;margin:0}
+.info-card a{margin-top:auto;padding-top:15px;font-weight:800;font-size:13px;display:flex;justify-content:space-between;color:var(--orange-dark)}
+.simple-list{border-top:1px solid var(--line);margin-top:38px}
+.simple-list .simple-row{padding:24px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:60px 1fr;gap:18px}
+.simple-row>span{font-size:13px;font-weight:800;color:var(--orange-dark);padding-top:6px}
+.simple-row h3{font-size:25px;letter-spacing:-.035em;margin:0 0 7px}
+.simple-row p{font-size:15px;color:#687067;line-height:1.6;margin:0;max-width:870px}
+.inner-split{display:grid;grid-template-columns:.8fr 1.2fr;gap:12%;align-items:start}
+.inner-split .section-intro{margin-top:15px}
+.inner-note{font-size:13px;color:#686f65;line-height:1.6;margin-top:34px;border-left:3px solid var(--orange);padding:12px 0 12px 20px;max-width:850px}
+.inner-section.dark .inner-note{color:#e0e3da;border-left-color:#f28b5b}
+.resource-links{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.resource-links a{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px;background:#f1f2ec;font-size:16px;font-weight:700;min-height:90px}
+.resource-links a:hover{background:#dce5d7}
+.resource-links a span{font-size:21px;color:#b95229}
+.price-table{width:100%;border-collapse:collapse}
+.price-table tr{border-bottom:1px solid var(--line)}
+.price-table th,.price-table td{text-align:left;padding:23px 15px;font-size:15px;vertical-align:top}
+.price-table th{font-weight:600}
+.price-table td:last-child{text-align:right;font-weight:850;white-space:nowrap}
+.callout{background:#d9e1d3;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:35px;margin-top:50px}
+.callout p{font-size:22px;letter-spacing:-.03em;line-height:1.3;font-weight:700;max-width:660px;margin:0}
+.callout .btn{flex:none}
+.contact-boxes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-box{background:#f0f2ec;padding:30px}
+.contact-box b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:15px}
+.contact-box a{display:block;font-size:26px;font-weight:750;letter-spacing:-.03em;overflow-wrap:anywhere}
+.contact-box p{font-size:15px;color:#626a61;line-height:1.65}
+.catalog-tag{display:inline-flex;font-size:10px;text-transform:uppercase;letter-spacing:.1em;background:#e0e6da;padding:6px 9px;margin-bottom:15px;font-weight:800}
+.practice-tag{font-weight:800;color:#a74c2d;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.footer-breadcrumb{font-size:12px;color:#aaa;padding:15px 0;border-bottom:1px solid #3b403a}
+.footer-breadcrumb a{text-decoration:underline}
+@media(max-width:760px){
+.inner-hero{padding:44px 0 60px}.inner-hero .crumbs{margin-bottom:34px}
+.inner-hero h1{font-size:clamp(45px,10vw,68px)}.inner-hero .lead{font-size:17px}
+.inner-section{padding:64px 0}.info-grid,.resource-links,.contact-boxes{grid-template-columns:1fr}
+.info-card{min-height:0}.inner-split{display:block}.inner-split>div:first-child{margin-bottom:35px}
+.price-table th,.price-table td{padding:18px 9px;font-size:13px}.price-table td:last-child{white-space:normal}
+.callout{display:block;padding:27px}.callout p{font-size:20px;margin-bottom:26px}
+.contact-box a{font-size:21px}
+}
