@@ -234,7 +234,7 @@
 .m7-team-heading h2 em{color:var(--orange-dark);font-style:normal}
 .m7-team-heading>p{margin:0 0 5px;color:#566459;font-size:16px;line-height:1.7}
 .m7-team-figure{padding:0;margin:0;overflow:hidden;background:#263129}
-.m7-team-figure>img{display:block;width:100%;height:min(61vw,630px);object-fit:cover;object-position:50% 37%}
+.m7-team-figure>img{display:block;width:100%;height:clamp(470px,48vw,735px);object-fit:cover;object-position:50% 20%}
 .m7-team-figure figcaption{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;padding:21px 29px;background:#263129;color:#e8eee8;font-size:13px}
 .m7-team-figure figcaption span:first-child{font-weight:800;text-transform:uppercase;letter-spacing:.12em}
 .m7-team-figure figcaption span:last-child{color:#bec8bd}
