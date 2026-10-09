@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# Preview repository: the live m7legal.ru is not deployed from these files.
+# Replace with robots.production.txt ONLY at launch after removing noindex.
