@@ -100,6 +100,11 @@ def package(source: Path, output: Path, mode: str, prefix: str) -> dict:
                 return before + q + '/#' + fragment + q
             text = re.sub(r'(\bhref=)(["\x27])#([A-Za-z0-9_-]+)\2',fix_anchor,text)
 
+            # Legacy pages and the homepage already fire click goals inline.
+            # Mark those pages so site.js does not emit duplicate events.
+            if 'reachGoal' in text and 'phone_click' in text:
+                text = re.sub(r'<html\\b', '<html data-m7-inline-click-tracking="1"', text, count=1, flags=re.I)
+
             # Every actual content page tracks calls and form-start once.
             if 'site.js' not in text:
                 text = re.sub(r'</body\s*>','<script src="/site.js" defer></script></body>',text,count=1,flags=re.I)
