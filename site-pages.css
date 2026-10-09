@@ -191,3 +191,39 @@
 @media(max-width:1040px){.monthly-card{padding:23px}.monthly-amount{font-size:33px}.price-section-head{gap:20px}}
 @media(max-width:800px){.monthly-grid,.china-rate-grid,.price-process{grid-template-columns:1fr}.monthly-card{min-height:0}.monthly-card>p{min-height:0}.price-section-head{grid-template-columns:1fr;gap:10px}.price-section-head h2{margin-bottom:4px}.price-section-head>p{margin:0 0 12px}}
 @media(max-width:600px){.pricing-hero{padding-bottom:58px}.price-jumplinks{margin:24px 0 28px}.price-jumplinks a{font-size:12px;padding:10px 11px}.price-list thead th{padding:15px 10px}.price-list tbody th,.price-list tbody td{padding:18px 10px}.price-list tbody th{font-size:14px}.price-list tbody th>small{font-size:12px}.price-list tbody td{font-size:16px}.price-list thead th:last-child{width:35%}.monthly-amount{font-size:39px}.china-rate-grid strong{font-size:35px}}
+
+
+/* Case amount typography and spacing; keep caption above the figure. */
+.case-card .case-home-money,
+.story-card .story-money{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+  margin:12px 0 26px;
+  width:100%;
+}
+.case-card .case-home-money>span,
+.story-card .story-money>span{
+  display:block;
+  color:#64705f;
+  font-size:11px;
+  font-weight:800;
+  line-height:1.4;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.case-card .case-home-money>strong,
+.story-card .story-money>strong{
+  display:block;
+  color:#26352b;
+  font-size:clamp(26px,2.2vw,35px);
+  line-height:1.18;
+  letter-spacing:-.045em;
+  font-weight:850;
+  font-variant-numeric:tabular-nums;
+}
+@media(max-width:460px){
+  .case-card .case-home-money>strong,
+  .story-card .story-money>strong{font-size:28px}
+}
