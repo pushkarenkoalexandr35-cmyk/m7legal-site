@@ -19,6 +19,7 @@
 - `uslugi/dlya-biznesa/`, `uslugi/dlya-chastnyh-lits/`: порталы сегментов.
 - `uslugi/arbitrazh/`, `uslugi/dogovornoe-pravo/`, `uslugi/korporativnoe-pravo/`, `uslugi/nedvizhimost/`, `uslugi/mezhdunarodnye-sdelki/`, `uslugi/konsultaciya/`: практики.
 - `praktika/`: типовые ситуации (**не** вымышленные завершённые кейсы).
+- `komanda/`, `komanda/artem-fedorov/`: реальный управляющий партнёр, биография на основе действующего сайта M7Legal, оптимизированная фотография из материалов LABNED.
 - `o-kompanii/`, `tseny/`, `kontakty/`.
 - 15 сохранённых исторических каталогов (включая Китай, `privacy/`, `rekvizity/`) со своими прежними URL.
 - `legacy.css`: исходные стили исторических посадочных страниц, чтобы не ломать их интерфейс.
