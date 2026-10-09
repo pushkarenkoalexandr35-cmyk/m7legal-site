@@ -62,3 +62,18 @@
 .callout{display:block;padding:27px}.callout p{font-size:20px;margin-bottom:26px}
 .contact-box a{font-size:21px}
 }
+
+/* Team & verified professional profiles */
+.team-person{display:grid;grid-template-columns:minmax(240px,330px) minmax(0,1fr);gap:55px;align-items:center;background:#f3f4ee;padding:30px}
+.team-person img{width:100%;height:auto;aspect-ratio:1/1;display:block;object-fit:cover}
+.team-person-info h3{font-size:clamp(35px,4vw,64px);letter-spacing:-.055em;line-height:1.08;margin:14px 0 20px}
+.team-person-info p:not(.practice-tag){font-size:16px;line-height:1.7;color:#596259;max-width:690px;margin:0 0 16px}
+.team-person-info .text-action{margin-top:16px}
+.profile-layout{display:grid;grid-template-columns:minmax(250px,400px) minmax(0,1fr);gap:8%;align-items:start}
+.profile-photo{background:#dee4d7;padding:16px}
+.profile-photo img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover}
+.profile-facts{border-top:1px solid var(--line);margin:32px 0}
+.profile-facts>div{display:flex;align-items:start;justify-content:space-between;gap:15px;padding:18px 0;border-bottom:1px solid var(--line)}
+.profile-facts span{color:#737b72;font-size:13px}
+.profile-facts b{font-size:16px;max-width:55%;text-align:right}
+@media(max-width:760px){.team-person,.profile-layout{display:block}.team-person{padding:22px}.team-person>a{display:block;max-width:360px;margin-bottom:30px}.team-person-info h3{font-size:41px}.profile-photo{max-width:450px;margin-bottom:40px}.profile-facts>div{align-items:start}}
