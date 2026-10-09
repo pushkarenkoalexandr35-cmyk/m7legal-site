@@ -147,7 +147,7 @@
         .replace(/[^a-zA-Z0-9_. -]/g,'')
         .slice(0,120);
 
-      status.textContent='Не удалось отправить заявку. Код: '+errorCode+'. Позвоните: +7 999 943-99-33';
+      status.textContent='Не удалось отправить заявку. Код: '+errorCode+'. Позвоните: 8 (495) 246-08-08';
 
       if(typeof ym==='function'){
         ym(111107130,'reachGoal','lead_error',{error_code:errorCode});
