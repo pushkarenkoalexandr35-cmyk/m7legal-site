@@ -103,7 +103,7 @@ def package(source: Path, output: Path, mode: str, prefix: str) -> dict:
             # Legacy pages and the homepage already fire click goals inline.
             # Mark those pages so site.js does not emit duplicate events.
             if 'reachGoal' in text and 'phone_click' in text:
-                text = re.sub(r'<html\\b', '<html data-m7-inline-click-tracking="1"', text, count=1, flags=re.I)
+                text = text.replace('<html ', '<html data-m7-inline-click-tracking="1" ', 1)
 
             # Every actual content page tracks calls and form-start once.
             if 'site.js' not in text:
