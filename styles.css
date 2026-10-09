@@ -54,7 +54,7 @@ h1 em,h2 em{font-style:normal;color:var(--orange-dark)}
 .hero-aside:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 49%,rgba(232,104,50,.19) 100%);pointer-events:none}
 .aside-top{display:flex;justify-content:space-between;gap:20px;position:relative;z-index:1;font-size:11px;letter-spacing:.13em;font-weight:700;color:#bcbfba}
 .aside-main{position:relative;z-index:1;font-size:clamp(35px,3.4vw,63px);line-height:1.08;letter-spacing:-.055em;font-weight:300;padding-top:64px}
-.aside-main p{margin:0 0:10px}
+.aside-main p{margin:0}
 .aside-main p+p{margin-top:35px}
 .aside-main strong{font-weight:700;color:#f28352}
 .aside-bottom{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;max-width:350px}
