@@ -13,7 +13,7 @@
   // Track actual user interest once, including the homepage and older legal pages.
   // The counter itself may be initialized inline on the homepage or on this site.js.
   if(location.hostname==="m7legal.ru"||location.hostname==="www.m7legal.ru"){
-    document.addEventListener("click",function(e){
+    if(!document.documentElement.dataset.m7InlineClickTracking) document.addEventListener("click",function(e){
       const a=e.target.closest("a[href]");if(!a || typeof window.ym!=="function")return;
       const href=a.getAttribute("href")||"";
       if(href.startsWith("tel:"))window.ym(111107130,"reachGoal","phone_click");
