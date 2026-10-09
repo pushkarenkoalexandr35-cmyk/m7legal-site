@@ -18,7 +18,7 @@
       const href=a.getAttribute("href")||"";
       if(href.startsWith("tel:"))window.ym(111107130,"reachGoal","phone_click");
       else if(href.startsWith("mailto:"))window.ym(111107130,"reachGoal","email_click");
-      else if(/(?:^https?:\\/\\/t\\.me\\/|^tg:)/i.test(href))window.ym(111107130,"reachGoal","telegram_click");
+      else if(href.startsWith("https://t.me/")||href.startsWith("http://t.me/")||href.startsWith("tg:"))window.ym(111107130,"reachGoal","telegram_click");
     });
     let started=false;
     document.addEventListener("focusin",function(e){
