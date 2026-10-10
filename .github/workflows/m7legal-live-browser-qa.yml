@@ -1,0 +1,44 @@
+name: M7Legal — live site Chromium QA
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "43 7 * * *" # 10:43 Moscow daily
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/m7legal-live-browser-qa.yml"
+      - "scripts/live_browser_qa.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: m7legal-production-visual-qa
+  cancel-in-progress: true
+
+jobs:
+  live-browser-qa:
+    name: Browser checks of published m7legal.ru
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install isolated Playwright Chromium
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Check LIVE pages, forms, image, mobile menu and layout
+        run: python scripts/live_browser_qa.py
+      - name: Upload production screenshots and diagnostic report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m7legal-live-browser-qa-${{ github.run_number }}
+          path: live-browser-artifacts/
+          if-no-files-found: warn
+          retention-days: 14
