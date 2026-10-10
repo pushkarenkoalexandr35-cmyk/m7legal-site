@@ -14,7 +14,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 MAIN_SITES = ["https://labned.ru/", "https://m7legal.ru/"]
-STAGING_ROUTES = ["", "o-kompanii/", "komanda/", "praktika/", "uslugi/", "tseny/", "kontakty/"]
+STAGING_ROUTES = ["", "o-kompanii/", "komanda/", "praktika/", "uslugi/", "tseny/", "kontakty/", "kitay-original/"]
 VIEWPORTS = [(320, 720), (390, 844), (768, 1024), (1440, 900)]
 
 
@@ -97,6 +97,7 @@ def run(base_url: str, output: Path):
                         if (width, route) in (
                             (390, ""), (390, "o-kompanii/"),
                             (1440, ""), (1440, "o-kompanii/"),
+                            (390, "kitay-original/"), (1440, "kitay-original/"),
                         ):
                             label = route.strip("/") or "home"
                             filename = f"{label}-{width}px.png"
