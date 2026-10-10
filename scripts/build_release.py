@@ -114,6 +114,24 @@ def package(source: Path, output: Path, mode: str, prefix: str) -> dict:
             text = text.replace('Новый сайт расширяет каталог на договорную работу, бизнес-споры, недвижимость и консультации.',
                                 'Фирма объединяет договорную работу, бизнес-споры, недвижимость и консультации.')
 
+            # Unified new-design header: no redundant dark utility strip;
+            # display the email directly under the telephone. The original
+            # Chinese landing page uses its independent legacy layout.
+            if 'class="site-header"' in text and 'class="nav-phone"' in text:
+                text = re.sub(
+                    r'<div class="utility"><div class="wrap utility-inner">.*?</div></div>\s*',
+                    '', text, count=1, flags=re.S,
+                )
+                if 'class="nav-contact"' not in text:
+                    text, changed = re.subn(
+                        r'(<div class="nav-actions">)(<a class="nav-phone"[^>]*>.*?</a>)',
+                        lambda m: (m.group(1) + '<div class="nav-contact">' + m.group(2) +
+                                   '<a class="nav-email" href="mailto:info@m7legal.ru">info@m7legal.ru</a></div>'),
+                        text, count=1, flags=re.S,
+                    )
+                    if changed != 1:
+                        raise ValueError('New-design header contact was not found: ' + str(rel))
+
             # References like #journal work only on the homepage; fix all non-existing fragment links.
             ids = set(re.findall(r'\bid=["\x27]([^"\x27]+)["\x27]', text))
             def fix_anchor(match):
