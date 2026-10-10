@@ -298,3 +298,11 @@
   .inner-section h2 { font-size:34px;overflow-wrap:anywhere; }
   .m7-team-heading h2 { font-size:30px; }
 }
+
+
+/* M7Legal header: email below phone, without the upper dark utility bar. */
+.nav-contact{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;min-width:155px}
+.nav-contact .nav-phone{display:inline-flex;font-size:14px;line-height:1.2;font-weight:800;white-space:nowrap}
+.nav-contact .nav-email{display:inline-flex;font-size:12px;line-height:1.25;color:#666f65;font-weight:600;white-space:nowrap}
+.nav-contact .nav-email:hover,.nav-contact .nav-email:focus-visible{color:var(--orange-dark)}
+@media(max-width:1270px){.nav-contact{display:none}}
