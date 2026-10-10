@@ -138,6 +138,21 @@ def run():
                             page.screenshot(path=str(folder / screenshot), full_page=False,
                                             animations="disabled")
                             result["screenshots"].append(screenshot)
+                        # The top-left logo must navigate to the main domain root.
+                        logo = page.locator("header a.logo, header a.brand")
+                        if logo.count() != 1:
+                            issues.append("Header logo anchor missing or ambiguous")
+                        else:
+                            if logo.get_attribute("href") != "/":
+                                issues.append("Header logo points somewhere other than /")
+                            if route in ("o-kompanii/", "uslugi/mezhdunarodnye-sdelki/") and width in (390, 1440):
+                                try:
+                                    logo.click(timeout=5000)
+                                    page.wait_for_url(BASE, timeout=11000)
+                                    if page.url != BASE:
+                                        issues.append("Clicking logo did not open homepage")
+                                except Exception as exc:
+                                    issues.append("Logo click failed: " + str(exc)[:210])
                     except Exception as e:
                         code = None
                         dims = {}
