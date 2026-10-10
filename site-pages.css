@@ -298,36 +298,3 @@
   .inner-section h2 { font-size:34px;overflow-wrap:anywhere; }
   .m7-team-heading h2 { font-size:30px; }
 }
-
-
-/* M7Legal homepage: two clearly distinct China-service destinations. */
-.m7-china-entry{padding:65px 0 70px;background:#ecede6;border-top:1px solid #d8dfd4;border-bottom:1px solid #d8dfd4}
-.m7-china-entry-heading{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:end;gap:45px;margin-bottom:28px}
-.m7-china-entry-heading h2{font-size:clamp(38px,4.3vw,61px);line-height:1.1;letter-spacing:-.05em;font-weight:720;margin:12px 0 0}
-.m7-china-entry-heading h2 em{color:#ad512c;font-style:normal}
-.m7-china-entry-heading>p{font-size:15px;line-height:1.7;color:#5d665d;margin:0 0 6px;max-width:425px}
-.m7-china-entry-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.m7-china-entry-card{display:flex;flex-direction:column;min-width:0;min-height:242px;padding:30px 34px;background:#28382d;color:#fff;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
-.m7-china-entry-card:hover,.m7-china-entry-card:focus-visible{transform:translateY(-3px);box-shadow:0 14px 35px rgba(20,36,27,.12)}
-.m7-china-entry-card:focus-visible{outline:3px solid #cb6138;outline-offset:3px}
-.m7-china-entry-card-secondary{background:#fffefa;color:#27382c;border:1px solid #d9ded3}
-.m7-china-entry-index{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:750;color:#f1aa88}
-.m7-china-entry-card-secondary .m7-china-entry-index{color:#a54c2f}
-.m7-china-entry-card>strong{font-size:clamp(23px,2.4vw,31px);line-height:1.2;letter-spacing:-.025em;max-width:440px;margin:21px 0 11px;overflow-wrap:anywhere}
-.m7-china-entry-description{font-size:13px;line-height:1.65;color:#d0d9cf;max-width:480px}
-.m7-china-entry-card-secondary .m7-china-entry-description{color:#637065}
-.m7-china-entry-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid #647364;padding-top:15px;margin-top:auto;font-size:14px;font-weight:800;color:#ffb291}
-.m7-china-entry-card-secondary .m7-china-entry-cta{color:#a44d30;border-color:#ced7ca}
-.m7-china-entry-cta span{font-size:21px;font-weight:500}
-@media(max-width:760px){
- .m7-china-entry{padding:50px 0 55px}
- .m7-china-entry-heading{grid-template-columns:minmax(0,1fr);gap:15px}
- .m7-china-entry-heading h2{font-size:clamp(33px,8vw,47px)}
- .m7-china-entry-grid{grid-template-columns:minmax(0,1fr)}
- .m7-china-entry-card{min-height:220px;padding:25px}
-}
-@media(max-width:350px){
- .m7-china-entry-heading h2{font-size:31px}
- .m7-china-entry-card{padding:21px}
- .m7-china-entry-card>strong{font-size:23px}
-}
