@@ -14,7 +14,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 MAIN_SITES = ["https://labned.ru/", "https://m7legal.ru/"]
-STAGING_ROUTES = ["", "o-kompanii/", "komanda/", "praktika/", "uslugi/", "tseny/", "kontakty/", "kitay-original/"]
+STAGING_ROUTES = ["", "o-kompanii/", "komanda/", "praktika/", "uslugi/", "tseny/", "kontakty/", "uslugi/mezhdunarodnye-sdelki/"]
 VIEWPORTS = [(320, 720), (390, 844), (768, 1024), (1440, 900)]
 
 
@@ -75,6 +75,19 @@ def run(base_url: str, output: Path):
                         if page_errors:
                             issues.extend("JS: " + error for error in page_errors)
 
+                        if route == "":
+                            if page.locator(".m7-china-entry").count() > 0:
+                                issues.append("Removed China promotion block still shown on homepage")
+                        if route == "uslugi/mezhdunarodnye-sdelki/":
+                            old_style = page.locator('link[href*="assets/legacy-home.css"]')
+                            if old_style.count() != 1:
+                                issues.append("Original site CSS missing from international deals page")
+                            heading = page.locator("h1").first.inner_text().strip()
+                            if "Проверка контрагентов из Китая" not in heading:
+                                issues.append("Original China landing headline missing")
+                            if page.locator('script[src*="m7-form.js"]').count() != 0:
+                                issues.append("Unexpected live lead-sender on staging China page")
+
                         if route == "o-kompanii/":
                             group_photo = page.locator(".m7-team-figure img")
                             if group_photo.count() != 1:
@@ -97,7 +110,8 @@ def run(base_url: str, output: Path):
                         if (width, route) in (
                             (390, ""), (390, "o-kompanii/"),
                             (1440, ""), (1440, "o-kompanii/"),
-                            (390, "kitay-original/"), (1440, "kitay-original/"),
+                            (390, "uslugi/mezhdunarodnye-sdelki/"),
+                            (1440, "uslugi/mezhdunarodnye-sdelki/"),
                         ):
                             label = route.strip("/") or "home"
                             filename = f"{label}-{width}px.png"
