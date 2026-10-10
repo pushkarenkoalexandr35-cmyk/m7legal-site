@@ -75,6 +75,13 @@ def run(base_url: str, output: Path):
                         if page_errors:
                             issues.extend("JS: " + error for error in page_errors)
 
+                        if page.locator(".site-header").count() == 1:
+                            if page.locator(".utility").count() != 0:
+                                issues.append("Old dark header strip was not removed")
+                            if page.locator(".nav-contact .nav-phone").count() != 1:
+                                issues.append("New-design phone contact not found")
+                            if page.locator('.nav-contact .nav-email[href="mailto:info@m7legal.ru"]').count() != 1:
+                                issues.append("Header email not positioned below telephone")
                         if route == "":
                             if page.locator(".m7-china-entry").count() > 0:
                                 issues.append("Removed China promotion block still shown on homepage")
