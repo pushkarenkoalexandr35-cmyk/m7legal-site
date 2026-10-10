@@ -11,6 +11,9 @@ on:
       - "scripts/site_browser_qa.py"
       - "scripts/build_release.py"
       - "site-pages.css"
+      - "index.html"
+      - "kitay-original/**"
+      - "assets/legacy-home.css"
       - "styles.css"
       - "site.js"
 
