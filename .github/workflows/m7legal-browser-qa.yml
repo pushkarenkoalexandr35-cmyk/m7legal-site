@@ -12,7 +12,7 @@ on:
       - "scripts/build_release.py"
       - "site-pages.css"
       - "index.html"
-      - "kitay-original/**"
+      - "uslugi/mezhdunarodnye-sdelki/index.html"
       - "assets/legacy-home.css"
       - "styles.css"
       - "site.js"
