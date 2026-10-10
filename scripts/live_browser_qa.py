@@ -65,6 +65,34 @@ def run():
                             issues.append("Missing production form sender")
                         if js_errors:
                             issues.extend("JS error: " + error for error in js_errors)
+                        if route in ("", "o-kompanii/"):
+                            selector = ".m7-award-strip" if route == "" else ".m7-award-about"
+                            award = page.locator(selector)
+                            if award.count() != 1:
+                                issues.append("Award trust section missing")
+                            else:
+                                if "M7Legal (группа компаний LABNED)" not in award.inner_text():
+                                    issues.append("Group award attribution missing")
+                                if award.locator('a[href="https://labned.ru/blog/labned-pobeditel-loyalty-cx-awards-2026/"]').count() == 0:
+                                    issues.append("Award original evidence link missing")
+                                if award.locator("img").count() != 1:
+                                    issues.append("Original award image missing")
+                                else:
+                                    award.scroll_into_view_if_needed()
+                                    try:
+                                        page.wait_for_function(
+                                            """sel => {
+                                                const image = document.querySelector(sel + ' img');
+                                                return image && image.complete && image.naturalWidth > 100;
+                                            }""", arg=selector, timeout=11000
+                                        )
+                                    except Exception:
+                                        issues.append("Original award photo did not load")
+                                if width in (390, 1440):
+                                    label = "home" if route == "" else "about"
+                                    screenshot = "award-" + label + "-" + str(width) + "px.png"
+                                    award.screenshot(path=str(folder / screenshot), animations="disabled")
+                                    result["screenshots"].append(screenshot)
                         if route == "":
                             if "Правовые решения" not in page.locator("h1").first.inner_text():
                                 issues.append("Wrong new homepage")
