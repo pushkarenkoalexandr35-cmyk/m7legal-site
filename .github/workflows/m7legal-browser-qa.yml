@@ -1,0 +1,45 @@
+name: M7Legal — external browser QA
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 7 * * *" # 10:17 Moscow daily
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/m7legal-browser-qa.yml"
+      - "scripts/site_browser_qa.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: m7legal-browser-qa
+  cancel-in-progress: true
+
+jobs:
+  browser-qa:
+    name: Read-only desktop/mobile visual checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright Chromium on isolated GitHub runner
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Browser checks (no form submissions)
+        run: |
+          python scripts/site_browser_qa.py --output qa-artifacts
+      - name: Upload screenshots and detailed QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m7legal-browser-qa-${{ github.run_number }}
+          path: qa-artifacts/
+          if-no-files-found: warn
+          retention-days: 14
