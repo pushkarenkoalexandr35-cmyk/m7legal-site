@@ -10,6 +10,7 @@ Staging mode always prevents lead delivery and indexing.
 """
 from __future__ import annotations
 import argparse
+import hashlib
 import html
 import json
 import re
@@ -62,6 +63,27 @@ def package(source: Path, output: Path, mode: str, prefix: str) -> dict:
         if path.suffix.lower() == '.xml' and path.name != 'BingSiteAuth.xml':
             continue
         files.append((path, rel))
+
+    # Nginx caches static CSS/JS for 30 days. Every release must reference
+    # content-addressed URLs to avoid mixing old CSS with new HTML.
+    asset_versions = {}
+    for asset in ("styles.css", "site-pages.css", "legacy.css", "site.js", "m7-form.js"):
+        resource = source / asset
+        if resource.is_file():
+            asset_versions[asset] = hashlib.sha256(resource.read_bytes()).hexdigest()[:12]
+
+    def version_local_asset(match):
+        start, quote, value = match.groups()
+        if value.startswith(("https://", "http://", "//", "data:")):
+            return match.group(0)
+        url, hash_mark, fragment = value.partition("#")
+        pathname, query_mark, query = url.partition("?")
+        name = pathname.rsplit("/", 1)[-1]
+        if name not in asset_versions:
+            return match.group(0)
+        retained = [v for v in query.split("&") if v and not v.startswith("v=")]
+        retained.append("v=" + asset_versions[name])
+        return start + quote + pathname + "?" + "&".join(retained) + (hash_mark + fragment if hash_mark else "") + quote
 
     for path, rel in files:
         dest = output / rel
@@ -133,6 +155,7 @@ def package(source: Path, output: Path, mode: str, prefix: str) -> dict:
 
             if not re.search(r'<script[^>]*\bsrc=["\x27][^"\x27]*site\.js',text,flags=re.I):
                 report['missing_analytics_script'].append(str(rel))
+            text = re.sub(r'((?:href|src)=)(["\x27])([^"\x27]*)\2', version_local_asset, text)
             dest.write_text(text,encoding='utf-8')
         elif path.suffix.lower() == '.css':
             css = path.read_text('utf-8')
