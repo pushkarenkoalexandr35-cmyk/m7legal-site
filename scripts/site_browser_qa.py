@@ -75,6 +75,15 @@ def run(base_url: str, output: Path):
                         if page_errors:
                             issues.extend("JS: " + error for error in page_errors)
 
+                        # After the preview safety script rewrites local links,
+                        # the top-left logo must lead to this preview's homepage.
+                        header_logo = page.locator("header a.logo, header a.brand")
+                        preview_root = "/" + base_url.split("/", 3)[3].strip("/") + "/"
+                        if header_logo.count() != 1:
+                            issues.append("No unique header logo")
+                        elif header_logo.get_attribute("href") != preview_root:
+                            issues.append("Header logo does not link to preview homepage")
+
                         if page.locator(".site-header").count() == 1:
                             if page.locator(".utility").count() != 0:
                                 issues.append("Old dark header strip was not removed")
