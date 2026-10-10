@@ -100,11 +100,7 @@ def package(source: Path, output: Path, mode: str, prefix: str) -> dict:
             is_home = rel == Path('index.html')
 
             # Production robots policy is explicit. Preview stays noindex by HTML + Nginx header.
-            # Preserve the previous homepage as a browsable archive, not a
-            # second indexable copy competing with the primary China service.
-            is_archived_home = rel == Path('kitay-original/index.html')
-            robots = ('noindex,follow' if is_archived_home else
-                      ('index,follow,max-image-preview:large' if mode == 'production' else 'noindex,nofollow'))
+            robots = 'index,follow,max-image-preview:large' if mode == 'production' else 'noindex,nofollow'
             meta_robots = re.compile(r'<meta\b(?=[^>]*\bname=["\x27]robots["\x27])[^>]*>', re.I)
             if meta_robots.search(text):
                 text = meta_robots.sub('<meta name="robots" content="'+robots+'">', text)
@@ -155,7 +151,7 @@ def package(source: Path, output: Path, mode: str, prefix: str) -> dict:
                 text = re.sub(r'</body\s*>','<script src="'+prefix+'preview.js" defer></script></body>',text,count=1,flags=re.I)
                 if 'm7-form.js' in text:report['form_script_on_staging'].append(str(rel))
             else:
-                if not is_archived_home and re.search(r'\bnoindex\b',text,flags=re.I):
+                if re.search(r'\bnoindex\b',text,flags=re.I):
                     report['noindex_release_pages'].append(str(rel))
 
             if not re.search(r'<script[^>]*\bsrc=["\x27][^"\x27]*site\.js',text,flags=re.I):
