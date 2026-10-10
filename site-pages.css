@@ -306,3 +306,53 @@
 .nav-contact .nav-email{display:inline-flex;font-size:12px;line-height:1.25;color:#666f65;font-weight:600;white-space:nowrap}
 .nav-contact .nav-email:hover,.nav-contact .nav-email:focus-visible{color:var(--orange-dark)}
 @media(max-width:1270px){.nav-contact{display:none}}
+
+
+/* M7Legal award trust content 2026 — factual group-level recognition. */
+.m7-award-strip{background:#e9eee7;border-top:1px solid #d7ddd3;border-bottom:1px solid #d7ddd3;padding:35px 0 38px}
+.m7-award-strip-layout{display:grid;grid-template-columns:148px minmax(0,1fr);gap:36px;align-items:center}
+.m7-award-strip-photo{display:block;width:148px;height:174px;overflow:hidden;background:#e0e7db}
+.m7-award-strip-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.m7-award-strip-content{min-width:0}
+.m7-award-strip .section-label{margin:0 0 10px;font-size:11px;font-weight:850;letter-spacing:.11em;text-transform:uppercase;color:#a84d2a}
+.m7-award-strip h2{font-size:clamp(23px,2.5vw,34px);line-height:1.16;letter-spacing:-.045em;font-weight:750;max-width:900px;margin:0 0 11px;color:#27342b}
+.m7-award-strip h2 em{color:#a84c2b;font-style:normal}
+.m7-award-strip-content>p:not(.section-label){max-width:890px;font-size:14px;line-height:1.65;color:#59635a;margin:0}
+.m7-award-strip-links{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;margin-top:15px}
+.m7-award-strip-links a{font-size:13px;line-height:1.45;font-weight:800;color:#a54825;text-decoration:underline;text-underline-offset:4px}
+.m7-award-strip-links a:hover{color:#773619}
+.m7-award-strip-links>span{font-size:12px;color:#677166}
+.m7-award-about{background:#f6f5ef}
+.m7-award-about-heading{max-width:960px;margin:0 0 33px}
+.m7-award-about-heading .section-label{font-size:11px;color:#a64b29;text-transform:uppercase;letter-spacing:.12em;font-weight:850;margin:0 0 17px}
+.m7-award-about-heading h2{font-size:clamp(37px,4.2vw,61px);line-height:1.1;letter-spacing:-.05em;margin:0;max-width:980px}
+.m7-award-about-heading h2 em{font-style:normal;color:#a64b29}
+.m7-award-about-layout{display:grid;grid-template-columns:minmax(260px,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,76px);align-items:center}
+.m7-award-about-photo{margin:0;min-width:0}
+.m7-award-about-photo img{display:block;width:100%;height:clamp(320px,37vw,485px);object-fit:cover;object-position:center 38%;background:#e4e7dd}
+.m7-award-about-photo figcaption{font-size:11px;line-height:1.5;margin-top:11px;color:#778075}
+.m7-award-about-copy{min-width:0}
+.m7-award-about-category{font-size:18px;line-height:1.35;letter-spacing:-.02em;font-weight:800;color:#28372e;margin:0 0 25px}
+.m7-award-about-copy p:not(.m7-award-about-category){font-size:15px;line-height:1.8;color:#536055;margin:0 0 17px}
+.m7-award-about-link{display:inline-flex;gap:24px;align-items:center;justify-content:space-between;color:#aa4e2b;font-size:14px;font-weight:850;border-bottom:1px solid currentColor;padding-bottom:7px;margin-top:14px}
+.m7-award-about-link:hover{color:#773619}
+@media(max-width:760px){
+  .m7-award-strip{padding:26px 0 31px}
+  .m7-award-strip-layout{grid-template-columns:92px minmax(0,1fr);align-items:start;gap:18px}
+  .m7-award-strip-photo{width:92px;height:132px}
+  .m7-award-strip h2{font-size:clamp(22px,5.3vw,29px);overflow-wrap:anywhere}
+  .m7-award-strip-content>p:not(.section-label){font-size:13px}
+  .m7-award-strip-links{gap:7px;align-items:flex-start;flex-direction:column}
+  .m7-award-about-heading{margin-bottom:24px}
+  .m7-award-about-heading h2{font-size:clamp(32px,8vw,47px)}
+  .m7-award-about-layout{grid-template-columns:minmax(0,1fr);gap:28px}
+  .m7-award-about-photo img{height:auto;max-height:520px;aspect-ratio:4/3;object-fit:cover;object-position:center 35%}
+  .m7-award-about-category{margin-bottom:16px}
+}
+@media(max-width:420px){
+  .m7-award-strip-layout{grid-template-columns:minmax(0,1fr);gap:13px}
+  .m7-award-strip-photo{width:92px;height:92px;border-radius:2px}
+  .m7-award-strip h2{font-size:25px}
+  .m7-award-about-heading h2{font-size:clamp(30px,8.2vw,35px)}
+  .m7-award-about-copy p:not(.m7-award-about-category){font-size:14px}
+}
