@@ -9,6 +9,10 @@ on:
     paths:
       - ".github/workflows/m7legal-browser-qa.yml"
       - "scripts/site_browser_qa.py"
+      - "scripts/build_release.py"
+      - "site-pages.css"
+      - "styles.css"
+      - "site.js"
 
 permissions:
   contents: read
