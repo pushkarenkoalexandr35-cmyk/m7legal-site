@@ -82,6 +82,35 @@ def run(base_url: str, output: Path):
                                 issues.append("New-design phone contact not found")
                             if page.locator('.nav-contact .nav-email[href="mailto:info@m7legal.ru"]').count() != 1:
                                 issues.append("Header email not positioned below telephone")
+                        if route in ("", "o-kompanii/"):
+                            selector = ".m7-award-strip" if route == "" else ".m7-award-about"
+                            award = page.locator(selector)
+                            if award.count() != 1:
+                                issues.append("Missing award trust section " + selector)
+                            else:
+                                if "M7Legal (группа компаний LABNED)" not in award.inner_text():
+                                    issues.append("Incorrect group award attribution")
+                                if award.locator('a[href="https://labned.ru/blog/labned-pobeditel-loyalty-cx-awards-2026/"]').count() < 1:
+                                    issues.append("Original award news link missing")
+                                img = award.locator("img").first
+                                if img.count() != 1:
+                                    issues.append("Real award photograph missing")
+                                else:
+                                    award.scroll_into_view_if_needed()
+                                    try:
+                                        page.wait_for_function(
+                                            """sel => {
+                                                const image = document.querySelector(sel + ' img');
+                                                return image && image.complete && image.naturalWidth > 100;
+                                            }""", arg=selector, timeout=11000
+                                        )
+                                    except Exception:
+                                        issues.append("Original award photograph failed to load")
+                                if width in (390, 1440):
+                                    label = "homepage" if route == "" else "about"
+                                    shot = f"award-{label}-{width}px.png"
+                                    award.screenshot(path=str(output / shot), animations="disabled")
+                                    result["screenshots"].append(shot)
                         if route == "":
                             if page.locator(".m7-china-entry").count() > 0:
                                 issues.append("Removed China promotion block still shown on homepage")
