@@ -1,0 +1,40 @@
+name: M7Legal — Yandex Metrika counter audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/m7legal-metrika-audit.yml"
+      - "scripts/metrika_browser_audit.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: m7legal-metrika-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright Chromium on external runner
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Check real Metrika initialization across sitemap URLs
+        run: python scripts/metrika_browser_audit.py
+      - name: Attach per-URL Metrika audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m7legal-metrika-all-pages
+          path: metrika-audit-artifacts/
+          if-no-files-found: warn
+          retention-days: 14
