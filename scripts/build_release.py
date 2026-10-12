@@ -20,6 +20,25 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT_MARKER = "m7legal.ru"
+
+# Top.Mail.Ru / VK Analytics: one real page view per production document.
+# Never inject the tracker or noscript pixel into the staging build.
+TOP_MAIL_RU_COUNTER = """<!-- Top.Mail.Ru counter -->
+<script type="text/javascript">
+var _tmr = window._tmr || (window._tmr = []);
+_tmr.push({id: "3801161", type: "pageView", start: (new Date()).getTime()});
+(function (d, w, id) {
+  if (d.getElementById(id)) return;
+  var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+  ts.src = "https://top-fwz1.mail.ru/js/code.js";
+  var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+  if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+})(document, window, "tmr-code");
+</script>
+<noscript><div><img src="https://top-fwz1.mail.ru/counter?id=3801161;js=na" style="position:absolute;left:-9999px;" alt="Top.Mail.Ru" /></div></noscript>
+<!-- /Top.Mail.Ru counter -->
+"""
+
 PREVIEW_JS = r"""(()=>{
  const p=document.documentElement.dataset.previewPrefix || '/m7legal-preview-20261009/';
  document.querySelectorAll('a[href]').forEach(a=>{
@@ -139,6 +158,17 @@ def package(source: Path, output: Path, mode: str, prefix: str) -> dict:
                 if fragment in ids: return match.group(0)
                 return before + q + '/#' + fragment + q
             text = re.sub(r'(\bhref=)(["\x27])#([A-Za-z0-9_-]+)\2',fix_anchor,text)
+
+            # Add one counter to each production HTML page; preview remains tracking-free.
+            if mode == 'production':
+                if re.search(r'top-fwz1\.mail\.ru|\b_tmr\b|Top\.Mail\.Ru counter', text, re.I):
+                    raise ValueError('Top.Mail.Ru counter already in source: ' + str(rel))
+                text, inserted = re.subn(
+                    r'</body\s*>', lambda match: TOP_MAIL_RU_COUNTER + match.group(0),
+                    text, count=1, flags=re.I,
+                )
+                if inserted != 1:
+                    raise ValueError('Missing closing body for Top.Mail.Ru: ' + str(rel))
 
             # Legacy pages and the homepage already fire click goals inline.
             # Mark those pages so site.js does not emit duplicate events.
