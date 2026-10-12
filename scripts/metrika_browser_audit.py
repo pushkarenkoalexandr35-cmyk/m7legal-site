@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only audit of Yandex Metrika installation on every published M7Legal URL."""
+"""Read-only Chromium audit of Yandex Metrika and Top.Mail.Ru on every M7Legal URL."""
 import json
 import sys
 import urllib.request
@@ -11,6 +11,8 @@ from playwright.sync_api import sync_playwright
 SITE = "https://m7legal.ru/"
 COUNTER = "111107130"
 TRACKER = "mc.yandex.ru/metrika/tag.js"
+MAIL_TRACKER = "top-fwz1.mail.ru/js/code.js"
+MAIL_ID = "3801161"
 REPORT_DIR = Path("metrika-audit-artifacts")
 
 def live_routes():
@@ -32,11 +34,17 @@ def main():
                 page = browser.new_page(viewport={"width": 1240, "height": 840})
                 tag_responses = []
                 tag_failures = []
+                mail_responses = []
+                mail_failures = []
                 errors = []
                 page.on("response", lambda r: tag_responses.append({"status": r.status, "url": r.url})
                         if TRACKER in r.url else None)
                 page.on("requestfailed", lambda r: tag_failures.append({"url": r.url, "failure": r.failure})
                         if TRACKER in r.url else None)
+                page.on("response", lambda r: mail_responses.append({"status": r.status, "url": r.url})
+                        if MAIL_TRACKER in r.url else None)
+                page.on("requestfailed", lambda r: mail_failures.append({"url": r.url, "failure": r.failure})
+                        if MAIL_TRACKER in r.url else None)
                 page.on("pageerror", lambda e: errors.append(str(e)[:280]))
                 row = {"url": url}
                 try:
@@ -55,6 +63,12 @@ def main():
                         metrika_tag_scripts: [...document.querySelectorAll('script[src]')]
                             .filter(s => s.src.includes('mc.yandex.ru/metrika/tag.js'))
                             .map(s => s.src),
+                        topmail_script_urls: [...document.querySelectorAll('script[id="tmr-code"]')]
+                            .map(s => s.src),
+                        topmail_inline_pageviews: [...document.scripts].filter(s =>
+                            (s.textContent || '').includes('_tmr.push({id: "3801161", type: "pageView"')
+                        ).length,
+                        topmail_queue_exists: Array.isArray(window._tmr),
                         site_js: [...document.querySelectorAll('script[src]')]
                             .filter(s => /site\\.js/.test(s.src)).map(s => s.src),
                         inline_init: [...document.scripts].some(s =>
@@ -68,11 +82,18 @@ def main():
                     row.update(diag)
                     row["tag_responses"] = tag_responses[:5]
                     row["tag_failures"] = tag_failures[:5]
+                    row["topmail_responses"] = mail_responses[:5]
+                    row["topmail_failures"] = mail_failures[:5]
+                    row["topmail_pixel_in_html"] = "top-fwz1.mail.ru/counter?id=3801161;js=na" in (response.text() if response else "")
                     row["page_errors"] = errors[:5]
                     row["passed"] = (row["http"] == 200 and row["ym_defined"] and
                                      len(row["metrika_tag_scripts"]) == 1 and
                                      "id=" + COUNTER in row["metrika_tag_scripts"][0] and
                                      len(row["site_js"]) == 1 and
+                                     len(row["topmail_script_urls"]) == 1 and
+                                     MAIL_TRACKER in row["topmail_script_urls"][0] and
+                                     row["topmail_inline_pageviews"] == 1 and
+                                     row["topmail_pixel_in_html"] and
                                      not errors)
                 except Exception as e:
                     row["passed"] = False
@@ -89,6 +110,8 @@ def main():
         "tag_http_200_pages": sum(1 for x in results if any(r["status"] == 200 for r in x.get("tag_responses", []))),
         "page_errors": sum(len(x.get("page_errors", [])) for x in results),
         "single_counter_id": COUNTER,
+        "single_topmail_id": MAIL_ID,
+        "topmail_http_200_pages": sum(1 for x in results if any(r["status"] == 200 for r in x.get("topmail_responses", []))),
         "checked_at": datetime.now(timezone.utc).isoformat(),
     }
     (REPORT_DIR / "metrika-report.json").write_text(
